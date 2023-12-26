@@ -1,0 +1,17 @@
+node_modules
+
+build
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+coverage
+requests.http
+
+.vscode/settings.json
+
+#.env.production
+
+src/api/developer-apis.ts
+# src/api/index.ts
