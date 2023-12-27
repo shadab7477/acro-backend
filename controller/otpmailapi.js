@@ -5,7 +5,7 @@ async function sendRegistrationOtp(email, otp) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "sakshitelang691@gmail.com", // Replace with your Gmail email
+      user: "demo747724@gmail.com", // Replace with your Gmail email
       pass: process.env.SENDER_MAIL_PASSWORD, // Replace with your Gmail App Password
     },
   });
