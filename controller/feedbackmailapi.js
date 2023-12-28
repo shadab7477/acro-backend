@@ -4,7 +4,7 @@ async function sendFeedbackMail(name, email, feedback) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "demo747724@gmail.com",
+      user: "sakshitelang691@gmail.com",
       pass: process.env.SENDER_MAIL_PASSWORD,
     },
   });
