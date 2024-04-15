@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const url ="mongodb+srv://aashutoshchouhan2:zFToYP1Go06JgrDY@cluster0.kthddbd.mongodb.net/acropolisnotes?retryWrites=true&w=majority";
+const url ="mongodb+srv://aashutoshchouhan2:amQMDd9fTsNQvfKL@cluster0.kthddbd.mongodb.net/acropolisnotes";
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
