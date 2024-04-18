@@ -5,14 +5,14 @@ async function sendRegistrationConfirmation(email) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "sakshitelang691@gmail.com", // Replace with your Gmail email
-      pass: process.env.SENDER_MAIL_PASSWORD, // Replace with your Gmail App Password
+      user: process.env.MAIL_SENDER,
+      pass: process.env.SENDER_MAIL_PASSWORD,
     },
   });
 
   // Define mail options with an improved HTML content
   const mailOptions = {
-    from: "sakshitelang691@gmail.com", // Replace with your Gmail email
+    from: process.env.MAIL_SENDER,
     to: email,
     subject: "Registration Successful",
     html: `
@@ -33,7 +33,6 @@ async function sendRegistrationConfirmation(email) {
   };
 
   try {
-    // Send the email
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent: " + info.response);
   } catch (error) {

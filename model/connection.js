@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-const url ="mongodb+srv://aashutoshchouhan2:amQMDd9fTsNQvfKL@cluster0.kthddbd.mongodb.net/acropolisnotes";
+const url = process.env.MONGO_URI;
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 

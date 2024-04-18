@@ -6,6 +6,9 @@ import sendMail from "./mailapi.js";
 import sendOtpMail from "./otpmailapi.js";
 import sendForgotPasswordOtp from "./forgotpasswordmailapi.js";
 import sendFeedbackEmail from "./feedbackmailapi.js";
+import Subject from "../model/subjectsModel.js";
+import Lecture from "../model/lectureModel.js";
+import Company from "../model/updatesModel.js";
 
 //-----------------------------------------------------------save data api--------------------------------------------------------------
 export const save = async (req, res, next) => {
@@ -229,5 +232,69 @@ export const sendFeedback = (req, res, next) => {
       status: false,
       msg: "cannot sent email",
     });
+  }
+};
+
+//api for getting subject details ------------------------------
+
+export const getSubjects = async (req, res, next) => {
+  try {
+    const subjects = await Subject.find();
+    if (subjects.length > 0) {
+      return res.status(200).json({
+        status: true,
+        subjects,
+      });
+    } else {
+      return res.status(404).json({
+        status: false,
+        msg: "cannot find subjects",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+//api for getting lectures based on the subject id  ------------------------------
+
+export const getLectures = async (req, res, next) => {
+  const { subject_id } = req.body;
+  try {
+    const lecturesData = await Lecture.find({
+      subject: Number(subject_id),
+    });
+    if (lecturesData.length > 0) {
+      return res.status(200).json({
+        status: true,
+        lecturesData,
+      });
+    } else {
+      return res.status(404).json({
+        status: false,
+        msg: "cannot find lectures",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+//api for getting company updates   ------------------------------
+
+export const getCompanyUpdates = async (req, res, next) => {
+  try {
+    const companyData = await Company.find();
+    if (companyData.length > 0) {
+      return res.status(200).json({
+        status: true,
+        companyData,
+      });
+    } else {
+      return res.status(404).json({
+        status: false,
+        msg: "cannot find any company details",
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
 };

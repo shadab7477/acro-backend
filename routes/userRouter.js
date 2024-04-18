@@ -31,5 +31,8 @@ route.get("/getuser", verifyToken, userController.getUser);
 route.post("/forgotpassword", userController.forgotPassword);
 route.post("/changepassword", userController.changePassword);
 route.post("/sendfeedback", userController.sendFeedback);
+route.get("/subjects", userController.getSubjects);
+route.post("/get_lectures", userController.getLectures);
+route.get("/get_company_updates", userController.getCompanyUpdates);
 
 export default route;

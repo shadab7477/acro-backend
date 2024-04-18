@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import useRouter from "./routes/userRouter.js";
 import dotenv from "dotenv";
+import adminRouter from "./routes/adminRouter.js";
 import cors from "cors";
 
 const PORT = process.env.PORT || 3001;
@@ -20,6 +21,7 @@ app.use(cors());
 
 //REDIRECTING TO THE USER ROUTE
 app.use("/user", useRouter);
+app.use("/admin", adminRouter);
 
 app.listen(PORT);
 console.log(`server is activated at http://localhost:${PORT}`);
