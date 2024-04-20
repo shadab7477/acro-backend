@@ -12,9 +12,7 @@ const verifyToken = (req, res, next) => {
   }
 
   try {
-    console.log(token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    console.log(decoded);
     req.user = decoded; // Attach user information to the request object
     next();
   } catch (error) {

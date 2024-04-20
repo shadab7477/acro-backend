@@ -28,7 +28,6 @@ async function sendFeedbackMail(name, email, feedback) {
   try {
     // Send the email
     const info = await transporter.sendMail(mailOptions);
-    console.log("Feedback Email sent: " + info.response);
     return true;
   } catch (error) {
     console.error("Error sending feedback email:", error);

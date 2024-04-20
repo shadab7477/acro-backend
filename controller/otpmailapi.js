@@ -36,7 +36,6 @@ async function sendRegistrationOtp(email, otp) {
   try {
     // Send the email
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
     return true;
   } catch (error) {
     console.error("Error sending email:", error);

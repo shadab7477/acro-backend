@@ -104,7 +104,6 @@ export const otpVerify = async (req, res, next) => {
   try {
     // Retrieve user by email
     const email = req.body.email;
-    console.log(email + "aagya bhai");
     const user = await userSchemaModel.findOne({ email });
 
     if (user) {
