@@ -9,6 +9,7 @@ import sendFeedbackEmail from "./feedbackmailapi.js";
 import Subject from "../model/subjectsModel.js";
 import Lecture from "../model/lectureModel.js";
 import Company from "../model/updatesModel.js";
+import mongoose from "mongoose";
 
 //-----------------------------------------------------------save data api--------------------------------------------------------------
 export const save = async (req, res, next) => {
@@ -275,6 +276,77 @@ export const getLectures = async (req, res, next) => {
       return res.status(404).json({
         status: false,
         msg: "cannot find lectures",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+//api for getting All lectures  ------------------------------
+
+export const getAllLectures = async (req, res, next) => {
+  try {
+    const lecturesData = await Lecture.find();
+
+    if (lecturesData.length > 0) {
+      return res.status(200).json({
+        status: true,
+        lecturesData,
+      });
+    } else {
+      return res.status(404).json({
+        status: false,
+        msg: "cannot find lectures",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+//api for deleting lecture  ------------------------------
+
+export const deleteLecture = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const lecturesData = await Lecture.deleteOne({
+      _id: new mongoose.Types.ObjectId(id),
+    });
+    console.log(lecturesData, "lecturesData");
+
+    if (lecturesData) {
+      return res.status(200).json({
+        status: true,
+        lecturesData,
+      });
+    } else {
+      return res.status(404).json({
+        status: false,
+        msg: "cannot delete lecture",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+//api for deleting company updates  ------------------------------
+
+export const deleteCompanyUpdates = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const companyUpdatesData = await Company.deleteOne({
+      _id: new mongoose.Types.ObjectId(id),
+    });
+    console.log(companyUpdatesData, "companyUpdatesData");
+
+    if (companyUpdatesData) {
+      return res.status(200).json({
+        status: true,
+        companyUpdatesData,
+      });
+    } else {
+      return res.status(404).json({
+        status: false,
+        msg: "cannot delete company details",
       });
     }
   } catch (error) {

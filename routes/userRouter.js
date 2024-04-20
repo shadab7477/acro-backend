@@ -33,6 +33,12 @@ route.post("/changepassword", userController.changePassword);
 route.post("/sendfeedback", userController.sendFeedback);
 route.get("/subjects", userController.getSubjects);
 route.post("/get_lectures", userController.getLectures);
+route.delete("/delete_lecture/:id", userController.deleteLecture);
+route.delete(
+  "/delete_company_updates/:id",
+  userController.deleteCompanyUpdates
+);
+route.get("/get_all_lectures", userController.getAllLectures);
 route.get("/get_company_updates", userController.getCompanyUpdates);
 
 export default route;
