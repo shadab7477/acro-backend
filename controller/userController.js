@@ -58,7 +58,6 @@ export const login = async (req, res, next) => {
         .json({ message: "Please enter your email and password" });
     }
 
-    // Normalize and trim the email before using it in the query
     const normalizedEmail = req.body.email.trim().toLowerCase();
 
     const user = await userSchemaModel.findOne({
@@ -67,14 +66,12 @@ export const login = async (req, res, next) => {
     });
 
     if (user) {
-      // Compare the input password with the stored hashed password
       const isPasswordMatch = await bcrypt.compare(
         req.body.password,
         user.password
       );
 
       if (isPasswordMatch) {
-        // Generate JWT token
         const token = jwt.sign(
           { userId: user._id, email: user.email },
           process.env.JWT_SECRET_KEY,
@@ -86,6 +83,7 @@ export const login = async (req, res, next) => {
           msg: "Logged in successfully...",
           token: token,
           username: user.name,
+          role: user.role,
         });
       } else {
         return res.status(401).json({ msg: "Invalid password" });
@@ -263,6 +261,11 @@ export const getLectures = async (req, res, next) => {
     const lecturesData = await Lecture.find({
       subject: Number(subject_id),
     });
+
+    const subjectData = await Subject.findOne({
+      subject_id: Number(subject_id),
+    });
+
     if (lecturesData.length > 0) {
       return res.status(200).json({
         status: true,
